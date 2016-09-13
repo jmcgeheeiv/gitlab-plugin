@@ -54,11 +54,12 @@ This is not an exhaustive list of issues, but rather a place for us to note sign
 
 Optionally, the plugin communicates with the GitLab server in order to fetch additional information. At this moment, this information is limited to fetching the source project of a Merge Request, in order to support merging from forked repositories.
 
-To enable this functionality, a user should be set up on GitLab, with GitLab 'Developer' permissions, to access the repository. You will need to give this user access to each repo you want Jenkins to be able to clone. Log in to GitLab as that user, go to its profile, and copy its secret API key. On the Global Configuration page in Jenkins, supply the GitLab host URL, e.g. ``http://your.gitlab.server.`` Click the 'Add' button to add a credential, choose 'GitLab API token' as the kind of credential, and paste your GitLab user's API key into the 'API token' field. Testing the connection should succeed.
+To enable this functionality, a user should be set up on GitLab, with GitLab 'Developer' permissions, to access the repository. You will need to give this user access to each repo you want Jenkins to be able to clone. Log in to GitLab as that user, go to its profile, and copy its secret API key. On the Global Configuration page in Jenkins, supply the GitLab host URL, e.g. ``http://your.gitlab.server.`` Click the 'Add' button to add a credential, choose 'GitLab API token' as the kind of credential, give the connection a name, and paste your GitLab user's API key into the 'API token' field. Testing the connection should succeed.
 
 ## Jenkins Job Configuration
 ### Git configuration for Freestyle jobs
-1. In the *Source Code Management* section:
+1. Toward the top of the page, in "GitLab Connection", verify that the name of the [GitLab connection you previously created](#configuring-access-to-gitlab) is selected
+2. In the *Source Code Management* section:
     1. Click *Git*
     2. Enter your *Repository URL* (e.g.: ``git@your.gitlab.server:group/repo_name.git``)
       * In the Advanced settings, set its *Name* to ``origin`` and its *refspec* to ``+refs/heads/*:refs/remotes/origin/* +refs/merge-requests/*/head:refs/remotes/origin/merge-requests/*``
